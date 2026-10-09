@@ -5,6 +5,8 @@
 
 # dotenv files
 .env
+coverage/
+prisma/dev.db
 
 # User-specific files
 *.rsuser
