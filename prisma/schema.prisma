@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// O GUID é gerado pela aplicação via crypto.randomUUID() antes de persistir.
+// `@db.Uuid` (presente no plan.md) é um tipo nativo exclusivo do PostgreSQL e
+// não é suportado pelo SQLite, por isso foi omitido aqui.
+model Password {
+  id         String   @id @default(uuid())
+  encrypted  String
+  iv         String
+  tag        String
+  created_at DateTime @default(now())
+
+  @@map("passwords")
+}
